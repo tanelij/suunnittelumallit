@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package suunnittelumallit.singleton;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,9 +12,6 @@ import java.util.logging.Logger;
  * @author tanel
  */
 public abstract class VaateTehdas {
-    
-    private static HashMap<VaateMerkki, VaateTehdas> tehdasMap
-            = new HashMap<>();
     
 
     
