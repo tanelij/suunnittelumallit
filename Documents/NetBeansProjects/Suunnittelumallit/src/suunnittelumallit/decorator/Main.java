@@ -12,12 +12,14 @@ package suunnittelumallit.decorator;
  */
 public class Main {
     public static void main(String[] args){
-        printPizza(decoratePizza(new PizzaPohja(), Täyte.KINKKU, Täyte.ANANAS));
-        printPizza(decoratePizza(new PizzaPohja(), Täyte.KINKKU, Täyte.PEPPERONI));
-        printPizza(decoratePizza(new PizzaPohja(), Täyte.PEPPERONI));
+        printPizza(makePizza(Täyte.KINKKU, Täyte.ANANAS));
+        printPizza(makePizza(Täyte.KINKKU, Täyte.PEPPERONI));
+        printPizza(makePizza(Täyte.PEPPERONI));
     }
     
-    public static Pizza decoratePizza(Pizza pizza, Täyte... täytteet){
+    public static Pizza makePizza(Täyte... täytteet){
+        Pizza pizza = new PizzaPohja();
+        
         for(Täyte t : täytteet){
             switch(t){
                 case KINKKU:
