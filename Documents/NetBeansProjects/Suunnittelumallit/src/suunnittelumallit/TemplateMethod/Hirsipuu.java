@@ -11,7 +11,7 @@ import suunnittelumallit.TemplateMethod.util.*;
  * @author tanel
  */
 public class Hirsipuu extends Game{
-    private Sanakirja sanakirja = new Sanakirja();
+    private Sanakirja sanakirja;
     private int yritykset;
     private boolean oikeaArvaus;
     private String sana;
@@ -21,6 +21,7 @@ public class Hirsipuu extends Game{
     @Override
     void initializeGame() {
         playersCount = 1;
+        sanakirja = new Sanakirja();
         yritykset = 5;
         oikeaArvaus = false;
         sana = sanakirja.satunnainenSana();
