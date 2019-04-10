@@ -13,11 +13,12 @@ import java.util.Random;
  */
 public abstract class PalkanKorottaja {
     protected PalkanKorottaja nextHandler;
-    protected double yläraja;
     Random random = new Random();
     
     @Override
     abstract public String toString();
+    
+    abstract double getYläraja();
         
     public final PalkanKorottaja setNext(PalkanKorottaja korotusHandler){
         this.nextHandler = korotusHandler;
@@ -33,12 +34,13 @@ public abstract class PalkanKorottaja {
                 System.out.println(this + " hylkäsi palkankorotuksen...");
             }
         }else{
+            System.out.println(this + " ei pysty käsittelemään tätä palkankorotusta...");
             nextHandler.handleKorotus(prosentti);
         }
     }
     
     protected boolean canHandle(double prosentti){
-        return prosentti <= yläraja;
+        return prosentti <= this.getYläraja();
     }
 }
 
@@ -60,44 +62,49 @@ class Test{
     
 
 class LähiEsimies extends PalkanKorottaja{
-    
-    public LähiEsimies(){
-        yläraja = 2;
-    }
+    private final double YLÄRAJA = 2;
 
     @Override
     public String toString() {
         return "lähiesimies";
     }
+
+    @Override
+    double getYläraja() {
+        return YLÄRAJA;
+    }
     
 }
 
 class YksikönPäällikkö extends PalkanKorottaja{
-    
-    public YksikönPäällikkö(){
-        yläraja = 5;
-    }
+    private final double YLÄRAJA = 5;
     
     @Override 
     protected boolean canHandle(double prosentti){
-        return prosentti < yläraja;
+        return prosentti < YLÄRAJA;
     }
     
     @Override
     public String toString() {
         return "yksikön päällikkö";
     }
+    
+    @Override
+    double getYläraja() {
+        return YLÄRAJA;
+    }
 }
 
 class Toimitusjohtaja extends PalkanKorottaja{
-
-    public Toimitusjohtaja(){
-        yläraja = Double.MAX_VALUE;
-    }
+    private final double YLÄRAJA = Double.MAX_VALUE;
  
     @Override
     public String toString() {
         return "toimitusjohtaja";
     }
     
+    @Override
+    double getYläraja() {
+        return YLÄRAJA;
+    }
 }
